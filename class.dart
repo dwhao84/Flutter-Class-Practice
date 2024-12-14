@@ -5,36 +5,66 @@
 存取物件的屬性和呼叫物件的方法。"
 */
 
-class Dawei {
-  void eat() {
-    print("Dawei在吃飯🥣");
-  }
-
-  void drinkBubbleTea() {
-    print("Dawei在喝珍珠奶茶🧋");
-  }
-
-  void sleep() {
-    print("Dawei在睡覺 🛌");
+// 定義基礎類別 Person
+class Person {
+  String name;
+  int age;
+  
+  // 建構子
+  Person(this.name, this.age);
+  
+  void introduce() {
+    print("我是 $name, 今年 $age 歲");
   }
 }
 
-class Joanna {
-  void happy() {
-    print("Joanna 每天都開心😁");
+// Dawei 繼承 Person
+class Dawei extends Person {
+  String favoriteFood;
+  
+  // 建構子,呼叫父類別建構子
+  Dawei(String name, int age, this.favoriteFood) : super(name, age);
+  
+  void eat() {
+    print("$name 在吃 $favoriteFood 🥣");
   }
+  
+  void drinkBubbleTea() {
+    print("$name 在喝珍珠奶茶 🧋");
+  }
+  
+  void sleep() {
+    print("$name 在睡覺 🛌");
+  }
+}
 
+// Joanna 繼承 Person
+class Joanna extends Person {
+  bool isWorking;
+  
+  Joanna(String name, int age, this.isWorking) : super(name, age);
+  
+  void happy() {
+    print("$name 今年 $age 歲,每天都開心 😁");
+  }
+  
   void tired() {
-    print("Joanna 不想上班😄");
+    if (isWorking) {
+      print("$name 現在在上班,好累不想上班 😄");
+    } else {
+      print("$name 現在放假,很開心 😄");
+    }
   }
 }
 
 void main() {
-  var dawei = Dawei();
-  dawei.sleep(); // 會印出 Dawei在睡覺 🛌
-  dawei.drinkBubbleTea(); // 會印出 Dawei在喝珍珠奶茶🧋
+  var dawei = Dawei("Dawei", 25, "漢堡");
+  dawei.introduce(); // 繼承自 Person 的方法
+  dawei.eat();
+  dawei.drinkBubbleTea();
   
-  var joanna = Joanna();
-  joanna.happy(); // 會印出 Joanna 每天都開心😁
-  joanna.tired(); // 會印出 Joanna 不想上班😄
+  var joanna = Joanna("Joanna", 23, true);
+  joanna.introduce(); // 繼承自 Person 的方法
+  joanna.happy();
+  joanna.tired();
 }
